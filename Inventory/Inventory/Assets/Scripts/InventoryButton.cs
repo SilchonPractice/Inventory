@@ -23,7 +23,6 @@ public class InventoryButton : MonoBehaviour {
 
     public void ChangeButtonImage(Sprite itemImage)
     {
-        print("in inventorybutton change?");
         button.image.sprite = itemImage;
     }
 }

@@ -15,6 +15,7 @@ public class InventoryButtonArray : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         buttonPosition = 0;
+        Invoke("SortInventoryButtonList", 3);
 	}
 	
 	// Update is called once per frame
@@ -24,11 +25,16 @@ public class InventoryButtonArray : MonoBehaviour {
 
     public void ItemButtonOnClick(Sprite itemImage)
     {
+        //아이템 버튼을 누를 시 인벤토리 버튼 리스트에 추가
         if (getButtonPosition() < inventoryButtonList.Count)
         {
             print("change image?");
             inventoryButtonList[getButtonPosition()].GetComponent<InventoryButton>().ChangeButtonImage(itemImage);
             setButtonPosition(getButtonPosition() + 1);
         }
+    }
+
+    void SortInventoryButtonList() {
+        inventoryButtonList.Sort();
     }
 }
