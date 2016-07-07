@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ResetButton : MonoBehaviour {
+public class DeleteButton : MonoBehaviour {
     private GameObject inventoryPanel;
 
 	// Use this for initialization
@@ -15,19 +15,17 @@ public class ResetButton : MonoBehaviour {
 	
 	}
 
-    public void OnClickResetButton()
+    public void OnClickDeleteButton()
     {
-        Debug.Log("Reset!");
-        for (int i = 0; i < inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList.Count; i++)
+        for (int i = 0; i < inventoryPanel.GetComponent<InventoryButtonArray>().getButtonMaxSize(); i++)
         {
-            //버튼이 클릭되어 있을 시 다시 복구시킴
             if (inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().getClickOn())
             {
+                Debug.Log("Delete");
+                inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().ChangeButtonImage(new Sprite());
                 inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().onClickInventoryButton();
+                inventoryPanel.GetComponent<InventoryButtonArray>().setButtonPosition(0);
             }
-            //이미지를 초기화
-            inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().ChangeButtonImage(new Sprite());
-            inventoryPanel.GetComponent<InventoryButtonArray>().setButtonPosition(0);
         }
     }
 }

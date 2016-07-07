@@ -19,6 +19,7 @@ public class ItemButton : MonoBehaviour {
 
     public void ButtonOnClick()
     {
+        Debug.Log("Item Button Clicked");
         inventoryButtonPanel.GetComponent<InventoryButtonArray>().ItemButtonOnClick(itemImage);
     }
 }

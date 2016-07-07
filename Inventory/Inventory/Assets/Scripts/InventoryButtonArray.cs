@@ -10,6 +10,7 @@ public class InventoryButtonArray : MonoBehaviour {
     public List<GameObject> inventoryButtonList = new List<GameObject>();   //인벤토리 내의 모든 버튼 리스트
 
     public int getButtonPosition() { return buttonPosition; }
+    public int getButtonMaxSize() { return buttonMaxSize; }
 
     public void setButtonPosition(int buttonPosition) { this.buttonPosition = buttonPosition; }
 
@@ -29,12 +30,26 @@ public class InventoryButtonArray : MonoBehaviour {
 
     public void ItemButtonOnClick(Sprite itemImage)
     {
+        int count = 0;
         //아이템 버튼을 누를 시 인벤토리 버튼 리스트에 추가
-        if (getButtonPosition() < inventoryButtonList.Count)
+        while (true)
         {
-            print("change image?");
-            inventoryButtonList[getButtonPosition()].GetComponent<InventoryButton>().ChangeButtonImage(itemImage);
+            count++;
+            if (inventoryButtonList[getButtonPosition()].GetComponent<InventoryButton>().button.image.sprite == null)
+            {
+                Debug.Log("Item Added");
+                inventoryButtonList[getButtonPosition()].GetComponent<InventoryButton>().ChangeButtonImage(itemImage);
+                break;
+            }
+
             setButtonPosition(getButtonPosition() + 1);
+            if (getButtonPosition() == getButtonMaxSize())
+            {
+                setButtonPosition(0);
+            }
+
+            if (count == getButtonMaxSize())
+                break;
         }
     }
 }
