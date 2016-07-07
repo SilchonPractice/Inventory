@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class InventoryButton : MonoBehaviour {
     private GameObject inventoryButtonPanel;
+
+    public Button button;
 
 	// Use this for initialization
 	void Start () {
@@ -17,4 +20,10 @@ public class InventoryButton : MonoBehaviour {
     {
 
 	}
+
+    public void ChangeButtonImage(Sprite itemImage)
+    {
+        print("in inventorybutton change?");
+        button.image.sprite = itemImage;
+    }
 }
