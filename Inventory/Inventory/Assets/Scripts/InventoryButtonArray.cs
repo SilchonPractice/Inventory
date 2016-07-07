@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class InventoryButtonArray : MonoBehaviour {
     private int buttonPosition;
+    private const int buttonMaxSize = 12;
 
     public List<GameObject> inventoryButtonList = new List<GameObject>();   //인벤토리 내의 모든 버튼 리스트
 
@@ -13,9 +14,12 @@ public class InventoryButtonArray : MonoBehaviour {
     public void setButtonPosition(int buttonPosition) { this.buttonPosition = buttonPosition; }
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         buttonPosition = 0;
-        Invoke("SortInventoryButtonList", 3);
+        for (int i = 0; i < buttonMaxSize; i++)
+        {
+            inventoryButtonList.Add(null);
+        }
 	}
 	
 	// Update is called once per frame
@@ -32,9 +36,5 @@ public class InventoryButtonArray : MonoBehaviour {
             inventoryButtonList[getButtonPosition()].GetComponent<InventoryButton>().ChangeButtonImage(itemImage);
             setButtonPosition(getButtonPosition() + 1);
         }
-    }
-
-    void SortInventoryButtonList() {
-        inventoryButtonList.Sort();
     }
 }

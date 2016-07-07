@@ -17,6 +17,7 @@ public class ResetButton : MonoBehaviour {
 
     public void OnClickResetButton()
     {
+        Debug.Log("Reset!");
         for (int i = 0; i < inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList.Count; i++)
         {
             inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().ChangeButtonImage(new Sprite());
