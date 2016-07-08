@@ -22,7 +22,7 @@ public class DeleteButton : MonoBehaviour {
             if (inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().getClickOn())
             {
                 Debug.Log("Delete");
-                inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().ChangeButtonImage(new Sprite());
+                inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().ChangeButtonInfo(new Sprite(), null);
                 inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().onClickInventoryButton();
                 inventoryPanel.GetComponent<InventoryButtonArray>().setButtonPosition(0);
             }

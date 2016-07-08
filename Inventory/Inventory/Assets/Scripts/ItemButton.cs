@@ -6,6 +6,7 @@ public class ItemButton : MonoBehaviour {
     private GameObject inventoryButtonPanel;
 
     public Sprite itemImage;
+    public string itemName;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +21,6 @@ public class ItemButton : MonoBehaviour {
     public void ButtonOnClick()
     {
         Debug.Log("Item Button Clicked");
-        inventoryButtonPanel.GetComponent<InventoryButtonArray>().ItemButtonOnClick(itemImage);
+        inventoryButtonPanel.GetComponent<InventoryButtonArray>().ItemButtonOnClick(itemImage, itemName);
     }
 }

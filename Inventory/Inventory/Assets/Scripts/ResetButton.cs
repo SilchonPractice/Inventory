@@ -26,7 +26,7 @@ public class ResetButton : MonoBehaviour {
                 inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().onClickInventoryButton();
             }
             //이미지를 초기화
-            inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().ChangeButtonImage(new Sprite());
+            inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().ChangeButtonInfo(new Sprite(), null);
             inventoryPanel.GetComponent<InventoryButtonArray>().setButtonPosition(0);
         }
     }

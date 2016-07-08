@@ -6,11 +6,13 @@ public class InventoryButton : MonoBehaviour {
     private GameObject inventoryButtonPanel;
     private bool clickOn;
     private Vector3 buttonSize;
+    private string itemName;
 
     public Button button;
     public int buttonPosition;
 
     public bool getClickOn() { return clickOn; }
+    public string getItemName() { return itemName; }
 
 	// Use this for initialization
 	void Start () {
@@ -29,9 +31,10 @@ public class InventoryButton : MonoBehaviour {
 
 	}
 
-    public void ChangeButtonImage(Sprite itemImage)
+    public void ChangeButtonInfo(Sprite itemImage, string itemName)
     {
         button.image.sprite = itemImage;
+        this.itemName = itemName;
     }
 
     public void onClickInventoryButton()
@@ -52,3 +55,5 @@ public class InventoryButton : MonoBehaviour {
         }
     }
 }
+
+//버튼 제작 참고 사이트 : http://mrw0119.tistory.com/40
