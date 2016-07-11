@@ -9,7 +9,7 @@ public class InventoryButton : MonoBehaviour {
     private string itemName;
 
     public Button button;
-    public int buttonPosition;
+    public int buttonIndex;
 
     public bool getClickOn() { return clickOn; }
     public string getItemName() { return itemName; }
@@ -21,14 +21,13 @@ public class InventoryButton : MonoBehaviour {
         buttonSize = Vector3.one;
 
         //버튼이 생성될 때 버튼 리스트에 추가
-        inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList.Insert(buttonPosition, this.gameObject);
-        inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList.RemoveAt(buttonPosition + 1);
+        inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList.Insert(buttonIndex, this.gameObject);
+        inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList.RemoveAt(buttonIndex + 1);
 	}
 	
 	// Update is called once per frame
     void Update()
     {
-
 	}
 
     public void ChangeButtonInfo(Sprite itemImage, string itemName)
@@ -41,18 +40,24 @@ public class InventoryButton : MonoBehaviour {
     {
         if (clickOn)
         {
-            Debug.Log("Inventory Button Click Down");
+            Debug.Log(buttonIndex + " Inventory Button Click Down");
             //클릭되어있는 상태일 때
             clickOn = false;
             button.transform.localScale = buttonSize;
         }
         else
         {
-            Debug.Log("Inventory Button Click On");
+            Debug.Log(buttonIndex + " Inventory Button Click On");
             //처음 클릭되었을 때
             clickOn = true;
             button.transform.localScale = buttonSize * 1.1f;
         }
+    }
+
+    void OnDrag(Vector2 delta)
+    {
+        Debug.Log("Drag");
+        button.transform.localPosition += (Vector3)delta;
     }
 }
 

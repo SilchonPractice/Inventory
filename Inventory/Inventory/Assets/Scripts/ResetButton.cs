@@ -17,7 +17,7 @@ public class ResetButton : MonoBehaviour {
 
     public void OnClickResetButton()
     {
-        Debug.Log("Reset!");
+        Debug.Log("Reset");
         for (int i = 0; i < inventoryPanel.GetComponent<InventoryButtonArray>().inventoryButtonList.Count; i++)
         {
             //버튼이 클릭되어 있을 시 다시 복구시킴
