@@ -53,12 +53,6 @@ public class InventoryButton : MonoBehaviour {
             button.transform.localScale = buttonSize * 1.1f;
         }
     }
-
-    void OnDrag(Vector2 delta)
-    {
-        Debug.Log("Drag");
-        button.transform.localPosition += (Vector3)delta;
-    }
 }
 
 //버튼 제작 참고 사이트 : http://mrw0119.tistory.com/40

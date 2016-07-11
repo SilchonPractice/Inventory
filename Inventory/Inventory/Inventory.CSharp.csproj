@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\DeleteButton.cs" />
     <Compile Include="Assets\Scripts\InventoryButton.cs" />
     <Compile Include="Assets\Scripts\InventoryButtonArray.cs" />
+    <Compile Include="Assets\Scripts\InventoryButtonDrag.cs" />
+    <Compile Include="Assets\Scripts\InventoryButtonOn.cs" />
     <Compile Include="Assets\Scripts\ItemButton.cs" />
     <Compile Include="Assets\Scripts\ResetButton.cs" />
   </ItemGroup>
