@@ -38,7 +38,7 @@ public class InventoryButtonDrag : MonoBehaviour {
                 this.transform.position.y > switchButton.GetComponent<InventoryButton>().button.transform.position.y - 40 &&
                 this.transform.position.y < switchButton.GetComponent<InventoryButton>().button.transform.position.y + 40)
             {
-                print(switchButton.GetComponent<InventoryButton>().buttonIndex + " switch button");
+                print(switchButton.GetComponent<InventoryButton>().buttonIndex + " switch button"); 
                 Sprite changeSprite = button.image.sprite;
                 string changeItemName = button.GetComponent<InventoryButton>().getItemName();
 
@@ -51,20 +51,9 @@ public class InventoryButtonDrag : MonoBehaviour {
         this.transform.position = initPosition;
         button.GetComponent<InventoryButton>().setClickOn(true);
         button.GetComponent<InventoryButton>().onClickInventoryButton();
+        inventoryButtonPanel.GetComponent<InventoryButtonArray>().SettingButtonPosition();
         checkDrop = false;
     }
-
-    /*
-    void OnTriggerEnter(Collider other)
-    {
-        if (!checkDragOn && other.gameObject.tag == "InventoryButton")
-        {
-            print("Collider??");
-            checkDragOn = true;
-
-        }
-    }
-     * */
 }
 
 //참고 사이트 : https://www.youtube.com/watch?v=c47QYgsJrWc

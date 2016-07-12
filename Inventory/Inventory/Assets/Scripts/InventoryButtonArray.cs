@@ -62,6 +62,17 @@ public class InventoryButtonArray : MonoBehaviour {
         }
     }
 
+    public void SettingButtonPosition()
+    {
+        for (int i = 0; i < inventoryButtonList.Count; i++)
+        {
+            if (inventoryButtonList[i].GetComponent<InventoryButton>().button.image.sprite == null)
+            {
+                buttonPosition = 0;
+            }
+        }
+    }
+
     public void LoadInventoryData()
     {
         //if (dataController.getDataList() != null)
