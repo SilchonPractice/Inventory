@@ -1,27 +1,70 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class InventoryButtonDrag : MonoBehaviour {
+    private Vector3 initPosition;
+    private GameObject inventoryButtonPanel;
+    private bool checkDrop;
+    private Button button;
 
-    //IEnumerator OnMouseDown()
-    //{
-    //    Vector3 scrSpace = Camera.main.ScreenToWorldPoint(transform.position);
-    //    Vector3 offset = transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, scrSpace.z));
-
-    //    while (Input.GetMouseButton(0))
-    //    {
-    //        Debug.Log("Drag");
-    //        Vector3 curScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, scrSpace.z);
-    //        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenSpace) + offset;
-    //        transform.position = curPosition;
-    //        yield return null;
-    //    }
-    //}
-
-    void OnDrag(Vector2 delta)
+    void Start()
     {
-        Debug.Log("drag");
-        this.transform.localPosition += (Vector3)delta;
+        initPosition = this.transform.position;
+        inventoryButtonPanel = GameObject.FindGameObjectWithTag("InventoryButtonPanel");
+        checkDrop = false;
+        button = this.GetComponent<InventoryButton>().button;
     }
 
+    public void OnInventoryButtonDrag()
+    {
+        Debug.Log("Button drag");
+
+        this.transform.position = Input.mousePosition;
+    }
+
+    public void OnInventoryButtonDrop()
+    {
+        Debug.Log("Button drop");
+
+        checkDrop = true;
+
+        foreach (GameObject switchButton in inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList)
+        {
+            if(checkDrop &&
+                switchButton != this.gameObject &&
+                this.transform.position.x > switchButton.GetComponent<InventoryButton>().button.transform.position.x - 40 &&
+                this.transform.position.x < switchButton.GetComponent<InventoryButton>().button.transform.position.x + 40 &&
+                this.transform.position.y > switchButton.GetComponent<InventoryButton>().button.transform.position.y - 40 &&
+                this.transform.position.y < switchButton.GetComponent<InventoryButton>().button.transform.position.y + 40)
+            {
+                print(switchButton.GetComponent<InventoryButton>().buttonIndex + " switch button");
+                Sprite changeSprite = button.image.sprite;
+                string changeItemName = button.GetComponent<InventoryButton>().getItemName();
+
+                button.GetComponent<InventoryButton>().ChangeButtonInfo(switchButton.GetComponent<InventoryButton>().button.image.sprite, switchButton.GetComponent<InventoryButton>().getItemName());
+
+                switchButton.GetComponent<InventoryButton>().ChangeButtonInfo(changeSprite, changeItemName);
+
+            }
+        }
+        this.transform.position = initPosition;
+        button.GetComponent<InventoryButton>().setClickOn(true);
+        button.GetComponent<InventoryButton>().onClickInventoryButton();
+        checkDrop = false;
+    }
+
+    /*
+    void OnTriggerEnter(Collider other)
+    {
+        if (!checkDragOn && other.gameObject.tag == "InventoryButton")
+        {
+            print("Collider??");
+            checkDragOn = true;
+
+        }
+    }
+     * */
 }
+
+//참고 사이트 : https://www.youtube.com/watch?v=c47QYgsJrWc
