@@ -41,5 +41,3 @@ public class DataController : MonoBehaviour {
         PlayerPrefs.SetString("Data", Convert.ToBase64String(memoryStream.GetBuffer()));    //"Data" : 일종의 저장 아이디
     }
 }
-
-//데이터 저장 참고 사이트 : http://kookiandkiki.blogspot.kr/2014/01/unity3d_432.html

@@ -20,7 +20,7 @@ public class InventoryButtonDrag : MonoBehaviour {
     {
         Debug.Log("Button drag");
 
-        this.transform.position = Input.mousePosition;
+        this.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -10);
     }
 
     public void OnInventoryButtonDrop()
@@ -45,7 +45,6 @@ public class InventoryButtonDrag : MonoBehaviour {
                 button.GetComponent<InventoryButton>().ChangeButtonInfo(switchButton.GetComponent<InventoryButton>().button.image.sprite, switchButton.GetComponent<InventoryButton>().getItemName());
 
                 switchButton.GetComponent<InventoryButton>().ChangeButtonInfo(changeSprite, changeItemName);
-
             }
         }
         this.transform.position = initPosition;
@@ -55,5 +54,3 @@ public class InventoryButtonDrag : MonoBehaviour {
         checkDrop = false;
     }
 }
-
-//참고 사이트 : https://www.youtube.com/watch?v=c47QYgsJrWc

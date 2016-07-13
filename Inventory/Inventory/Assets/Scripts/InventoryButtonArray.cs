@@ -46,7 +46,7 @@ public class InventoryButtonArray : MonoBehaviour {
             count++;
             if (inventoryButtonList[getButtonPosition()].GetComponent<InventoryButton>().button.image.sprite == null)
             {
-                Debug.Log("Item Added");
+                Debug.Log(buttonPosition + " Button Item Added");
                 inventoryButtonList[getButtonPosition()].GetComponent<InventoryButton>().ChangeButtonInfo(itemImage, itemName);
                 break;
             }
