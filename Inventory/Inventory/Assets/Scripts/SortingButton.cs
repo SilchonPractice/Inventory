@@ -27,6 +27,7 @@ public class SortingButton : MonoBehaviour {
 
     public void OnClickSortingButton()
     {
+        Debug.Log("Sorting");
         itemNameList.Clear();
         foreach (GameObject button in inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList)
         {
@@ -34,10 +35,10 @@ public class SortingButton : MonoBehaviour {
                 itemNameList.Add(button.GetComponent<InventoryButton>().getItemName());
         }
 
+        //버튼에 저장되어 있는 아이템의 이름들을 list로 저장하여 sorting
         itemNameList.Sort();
 
-        resetButton.GetComponent<ResetButton>().OnClickResetButton();
-
+        //sorting순서대로 다시 버튼에 맞게 이름과 이미지를 등록
         for (int i = 0; i < itemNameList.Count; i++)
         {
             if (String.Equals(itemNameList[i], "Gun"))

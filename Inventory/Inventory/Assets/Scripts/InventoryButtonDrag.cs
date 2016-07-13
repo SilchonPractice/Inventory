@@ -31,6 +31,7 @@ public class InventoryButtonDrag : MonoBehaviour {
 
         foreach (GameObject switchButton in inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList)
         {
+            //다른 버튼의 영역안에 들어왔을 때
             if(checkDrop &&
                 switchButton != this.gameObject &&
                 this.transform.position.x > switchButton.GetComponent<InventoryButton>().button.transform.position.x - 40 &&
@@ -38,7 +39,7 @@ public class InventoryButtonDrag : MonoBehaviour {
                 this.transform.position.y > switchButton.GetComponent<InventoryButton>().button.transform.position.y - 40 &&
                 this.transform.position.y < switchButton.GetComponent<InventoryButton>().button.transform.position.y + 40)
             {
-                print(switchButton.GetComponent<InventoryButton>().buttonIndex + " switch button"); 
+                Debug.Log(switchButton.GetComponent<InventoryButton>().buttonIndex + " switch button"); 
                 Sprite changeSprite = button.image.sprite;
                 string changeItemName = button.GetComponent<InventoryButton>().getItemName();
 
@@ -47,8 +48,9 @@ public class InventoryButtonDrag : MonoBehaviour {
                 switchButton.GetComponent<InventoryButton>().ChangeButtonInfo(changeSprite, changeItemName);
             }
         }
-        this.transform.position = initPosition;
-        button.GetComponent<InventoryButton>().setClickOn(true);
+
+        this.transform.position = initPosition; //버튼을 놓으면 다시 원래 위치로 되돌아 감
+        button.GetComponent<InventoryButton>().setClickOn(true);    //자꾸 클릭이 되어서 클릭 off 시킴
         button.GetComponent<InventoryButton>().onClickInventoryButton();
         inventoryButtonPanel.GetComponent<InventoryButtonArray>().SettingButtonPosition();
         checkDrop = false;

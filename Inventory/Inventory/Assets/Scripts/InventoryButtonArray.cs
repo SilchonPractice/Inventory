@@ -23,6 +23,7 @@ public class InventoryButtonArray : MonoBehaviour {
 	void Awake () {
         player = GameObject.FindGameObjectWithTag("Player");
 
+        //버튼의 전체 개수만큼 리스트 생성
         for (int i = 0; i < buttonMaxSize; i++)
         {
             inventoryButtonList.Add(null);
