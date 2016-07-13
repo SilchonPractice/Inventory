@@ -14,6 +14,7 @@ public class WWWHelper : MonoBehaviour
 
     /** 이벤트 핸들러 */
     public event HttpRequestDelegate OnHttpRequest;
+    public event HttpRequestDelegate OnHttpRequest_post;
 
     /** 웹 서버로의 요청을 구분하기 위한 ID값 */
     private int requestId;
@@ -44,6 +45,7 @@ public class WWWHelper : MonoBehaviour
     {
         WWW www = new WWW(url);
         StartCoroutine(WaitForRequest(id, www));
+        
     }
 
     /** HTTP POST 방식 통신 처리 */
@@ -57,7 +59,7 @@ public class WWWHelper : MonoBehaviour
         }
 
         WWW www = new WWW(url, form);
-        StartCoroutine(WaitForRequest(id, www));
+        StartCoroutine(WaitForRequest_post(id, www));
     }
 
     /** 통신 처리를 위한 코루틴 */
@@ -72,6 +74,23 @@ public class WWWHelper : MonoBehaviour
         if (hasCompleteListener)
         {
             OnHttpRequest(id, www);
+        }
+
+        // 통신 해제
+        www.Dispose();
+    }
+
+    private IEnumerator WaitForRequest_post(int id, WWW www)
+    {
+        // 응답이 올떄까지 기다림
+        yield return www;
+
+        // 응답이 왔다면, 이벤트 리스너에 응답 결과 전달
+        bool hasCompleteListener = (OnHttpRequest_post != null);
+
+        if (hasCompleteListener)
+        {
+            OnHttpRequest_post(id, www);
         }
 
         // 통신 해제

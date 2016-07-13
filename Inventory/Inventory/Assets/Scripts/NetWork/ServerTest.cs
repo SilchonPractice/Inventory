@@ -99,6 +99,16 @@ public class ServerTest : MonoBehaviour
         }
 
     }
+
+    public void OnHttpRequest_post(int id, WWW www)
+    {
+        if (www.error != null)
+        {
+            Debug.Log("[Error] " + www.error);
+            return;
+        }
+    }
+
     public void SaveServer(int id)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
