@@ -27,6 +27,7 @@ public class SortingButton : MonoBehaviour {
 
     public void OnClickSortingButton()
     {
+        itemNameList.Clear();
         foreach (GameObject button in inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList)
         {
             if(button.GetComponent<InventoryButton>().getItemName() != null)
