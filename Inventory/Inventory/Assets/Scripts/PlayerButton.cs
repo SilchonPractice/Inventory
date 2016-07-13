@@ -5,6 +5,7 @@ public class PlayerButton : MonoBehaviour {
     private GameObject playerButtonController;
     private bool checkButtonClick;
 
+    public int playerId;
     public string playerName;
 
     public void setCheckButtonClick(bool checkButtonClick) { this.checkButtonClick = checkButtonClick; }
@@ -17,6 +18,10 @@ public class PlayerButton : MonoBehaviour {
             checkButtonClick = true;
         else
             checkButtonClick = false;
+
+        playerButtonController.GetComponent<PlayerButtonController>().playerList.Insert(playerId, this.gameObject);
+        playerButtonController.GetComponent<PlayerButtonController>().playerList.RemoveAt(playerId + 1);
+
 	}
 	
 	// Update is called once per frame

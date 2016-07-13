@@ -29,8 +29,6 @@ public class InventoryButtonArray : MonoBehaviour {
             inventoryButtonList.Add(null);
         }
         buttonPosition = 0;
-
-        Invoke("LoadInventoryData", 0.1f);
 	}
 	
 	// Update is called once per frame

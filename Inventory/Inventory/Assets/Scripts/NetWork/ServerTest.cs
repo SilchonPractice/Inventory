@@ -22,8 +22,6 @@ public class ServerTest : MonoBehaviour
 
         helper = WWWHelper.Instance;
         helper.OnHttpRequest += OnHttpRequest;
-
-        LoadServer(1);
     }
 
     public void LoadServer(int id)
