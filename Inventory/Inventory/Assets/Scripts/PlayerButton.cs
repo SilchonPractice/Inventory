@@ -3,17 +3,20 @@ using System.Collections;
 
 public class PlayerButton : MonoBehaviour {
     private GameObject playerButtonController;
-    //private bool checkButtonClick;
+    private bool checkButtonClick;
 
     public string playerName;
 
-    //public void setCheckButtonClick(bool checkButtonClick) { this.checkButtonClick = checkButtonClick; }
-    //public bool getCheckButtonClick() { return checkButtonClick; }
+    public void setCheckButtonClick(bool checkButtonClick) { this.checkButtonClick = checkButtonClick; }
+    public bool getCheckButtonClick() { return checkButtonClick; }
 
 	// Use this for initialization
 	void Start () {
         playerButtonController = GameObject.FindGameObjectWithTag("PlayerButtons");
-        //checkButtonClick = false;
+        if (this.gameObject.name == "PlayerAButton")
+            checkButtonClick = true;
+        else
+            checkButtonClick = false;
 	}
 	
 	// Update is called once per frame
@@ -25,5 +28,6 @@ public class PlayerButton : MonoBehaviour {
     {
         Debug.Log("Click " + playerName);
         playerButtonController.GetComponent<PlayerButtonController>().LoadAndSavePlayerData(this.gameObject);
+        checkButtonClick = true;
     }
 }

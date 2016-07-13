@@ -77,7 +77,7 @@ public class InventoryButtonArray : MonoBehaviour {
     void OnApplicationQuit()
     {
 
-        Debug.Log("Save data");
-        networkmanager.GetComponent<ServerTest>().SaveServer();
+        Debug.Log("Quit");
+        //networkmanager.GetComponent<ServerTest>().SaveServer(1);
     }
 }
