@@ -38,6 +38,9 @@ public class SortingButton : MonoBehaviour {
         //버튼에 저장되어 있는 아이템의 이름들을 list로 저장하여 sorting
         itemNameList.Sort();
 
+        //초기화
+        resetButton.GetComponent<ResetButton>().OnClickResetButton();
+
         //sorting순서대로 다시 버튼에 맞게 이름과 이미지를 등록
         for (int i = 0; i < itemNameList.Count; i++)
         {
