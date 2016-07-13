@@ -42,6 +42,9 @@ public class ServerTest : MonoBehaviour
         String id_webrequest = www.text;
 
         id_webrequest = id_webrequest.Replace("Array", "");
+        id_webrequest = id_webrequest.Replace("[0]", "");
+        id_webrequest = id_webrequest.Replace("[1]", "");
+        id_webrequest = id_webrequest.Replace("[2]", "");
         id_webrequest = id_webrequest.Replace("(", "");
         id_webrequest = id_webrequest.Replace(")", "");
         id_webrequest = id_webrequest.Replace(" ", "");
@@ -52,11 +55,10 @@ public class ServerTest : MonoBehaviour
 
         for (int j = 1; j < id_lines.Length; j++)
         {
-            Debug.Log("test : " + id_lines[j].Substring(2, id_lines[j].IndexOf("[") - 2));
+            //Debug.Log("test : " + id_lines[j].Substring(2, id_lines[j].IndexOf("[") - 2));
 
             if (String.Equals("" + id, id_lines[j].Substring(2, id_lines[j].IndexOf("[") - 2)))
             {
-
                 //LoadServer(id_lines[1]);
                 //--------------------------------------------------------------------
 
@@ -69,18 +71,15 @@ public class ServerTest : MonoBehaviour
                 String getrequestbutton = "";
                 for (int i = 0; i < inventoryButtonPanel.GetComponent<InventoryButtonArray>().getButtonMaxSize(); i++)
                 {
-                    if (i < inventoryButtonPanel.GetComponent<InventoryButtonArray>().getButtonMaxSize())
+                    if (i == inventoryButtonPanel.GetComponent<InventoryButtonArray>().getButtonMaxSize() - 1)
                     {
-                        if (i == inventoryButtonPanel.GetComponent<InventoryButtonArray>().getButtonMaxSize() - 1)
-                        {
-                            getrequestbutton = lines[i + 3].Substring(0);
-                            //Debug.Log("button[" + i + "]item : " + getrequestbutton);
-                        }
-                        else
-                        {
-                            getrequestbutton = lines[i + 3].Substring(0, lines[i + 3].IndexOf("["));
-                            //Debug.Log("button[" + i + "]item : " + getrequestbutton);
-                        }
+                        getrequestbutton = lines[i + 3].Substring(0);
+                        Debug.Log("button[" + i + "]item : " + getrequestbutton);
+                    }
+                    else
+                    {
+                        getrequestbutton = lines[i + 3].Substring(0, lines[i + 3].IndexOf("["));
+                        Debug.Log("button[" + i + "]item : " + getrequestbutton);
                     }
 
                     if (String.Equals(getrequestbutton, "Gun"))
@@ -96,7 +95,6 @@ public class ServerTest : MonoBehaviour
                         inventoryButtonPanel.GetComponent<InventoryButtonArray>().inventoryButtonList[i].GetComponent<InventoryButton>().
                             ChangeButtonInfo(inventoryButtonPanel.GetComponent<InventoryButtonArray>().itemSpriteList[3], getrequestbutton);
                 }
-
             }
         }
 

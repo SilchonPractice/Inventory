@@ -14,14 +14,9 @@ public class PlayerButton : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playerButtonController = GameObject.FindGameObjectWithTag("PlayerButtons");
-        if (this.gameObject.name == "PlayerAButton")
-            checkButtonClick = true;
-        else
-            checkButtonClick = false;
 
         playerButtonController.GetComponent<PlayerButtonController>().playerList.Insert(playerId, this.gameObject);
         playerButtonController.GetComponent<PlayerButtonController>().playerList.RemoveAt(playerId + 1);
-
 	}
 	
 	// Update is called once per frame

@@ -26,7 +26,6 @@ public class PlayerButtonController : MonoBehaviour
 
     public void LoadAndSavePlayerData(GameObject clickPlayer)
     {
-        print(playerList.Count);
         for (int i = 0; i < playerList.Count; i++)
         {
             if (playerList[i].GetComponent<PlayerButton>().getCheckButtonClick())
@@ -35,6 +34,7 @@ public class PlayerButtonController : MonoBehaviour
                 Debug.Log("Data save " + playerList[i].name);
                 networkManager.GetComponent<ServerTest>().SaveServer(i);
                 playerList[i].GetComponent<PlayerButton>().setCheckButtonClick(false);
+                resetButton.GetComponent<ResetButton>().OnClickResetButton();
             }
         }
         for(int i = 0; i < playerList.Count; i++)
@@ -43,7 +43,6 @@ public class PlayerButtonController : MonoBehaviour
             {
                 //데이터 로드
                 Debug.Log("Data load " + clickPlayer);
-                resetButton.GetComponent<ResetButton>().OnClickResetButton();
                 networkManager.GetComponent<ServerTest>().LoadServer(i);
             }
         }
