@@ -11,6 +11,7 @@ public class InventoryButtonArray : MonoBehaviour {
     private int buttonPosition;
     private const int buttonMaxSize = 12;
     private GameObject player;
+    private GameObject networkmanager;
 
     public List<GameObject> inventoryButtonList = new List<GameObject>();   //인벤토리 내의 모든 버튼 리스트
     public List<Sprite> itemSpriteList = new List<Sprite>();
@@ -22,6 +23,7 @@ public class InventoryButtonArray : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         player = GameObject.FindGameObjectWithTag("Player");
+        networkmanager = GameObject.FindGameObjectWithTag("NetworkManager");
 
         //버튼의 전체 개수만큼 리스트 생성
         for (int i = 0; i < buttonMaxSize; i++)
@@ -76,6 +78,7 @@ public class InventoryButtonArray : MonoBehaviour {
 
     public void LoadInventoryData()
     {
+        /*
         //if (dataController.getDataList() != null)
         if (player.GetComponent<DataController>().getDataList() != null)
         {
@@ -95,18 +98,21 @@ public class InventoryButtonArray : MonoBehaviour {
 
             buttonPosition = player.GetComponent<DataController>().getDataList().saveButtonPosition;
         }
+         * */
     }
 
     void OnApplicationQuit()
     {
+
         Debug.Log("Save data");
-        List<string> itemNameList = new List<string>();
-        for (int i = 0; i < inventoryButtonList.Count; i++)
-        {
-            itemNameList.Add(inventoryButtonList[i].GetComponent<InventoryButton>().getItemName());
-        }
-        player.GetComponent<DataController>().getDataList().saveInventoryButtonList = itemNameList;
-        player.GetComponent<DataController>().getDataList().saveButtonPosition = buttonPosition;
-        player.GetComponent<DataController>().SaveDatas();
+        //List<string> itemNameList = new List<string>();
+        //for (int i = 0; i < inventoryButtonList.Count; i++)
+        //{
+         //   itemNameList.Add(inventoryButtonList[i].GetComponent<InventoryButton>().getItemName());
+        //}
+        //player.GetComponent<DataController>().getDataList().saveInventoryButtonList = itemNameList;
+        //player.GetComponent<DataController>().getDataList().saveButtonPosition = buttonPosition;
+        //player.GetComponent<DataController>().SaveDatas();
+        networkmanager.GetComponent<ServerTest>().SaveServer();
     }
 }
