@@ -11,9 +11,11 @@ public class InventoryButtonArray : MonoBehaviour {
     private int buttonPosition;
     private const int buttonMaxSize = 12;
     private GameObject networkmanager;
+    private GameObject playerbuttons;
 
     public List<GameObject> inventoryButtonList = new List<GameObject>();   //인벤토리 내의 모든 버튼 리스트
     public List<Sprite> itemSpriteList = new List<Sprite>();
+    
 
     public int getButtonPosition() { return buttonPosition; }
     public int getButtonMaxSize() { return buttonMaxSize; }
@@ -22,6 +24,7 @@ public class InventoryButtonArray : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         networkmanager = GameObject.FindGameObjectWithTag("NetworkManager");
+        playerbuttons = GameObject.FindGameObjectWithTag("PlayerButtons");
 
         //버튼의 전체 개수만큼 리스트 생성
         for (int i = 0; i < buttonMaxSize; i++)
@@ -75,6 +78,11 @@ public class InventoryButtonArray : MonoBehaviour {
     void OnApplicationQuit()
     {
         Debug.Log("Quit");
-        //networkmanager.GetComponent<ServerTest>().SaveServer(1);
+
+        for(int i=0; i<playerbuttons.GetComponent<PlayerButtonController>().playerList.Count;i++) {
+            if (playerbuttons.GetComponent<PlayerButtonController>().playerList[i].GetComponent<PlayerButton>().getCheckButtonClick()) {
+                networkmanager.GetComponent<ServerTest>().SaveServer(i);
+            }
+        }
     }
 }

@@ -74,12 +74,12 @@ public class ServerTest : MonoBehaviour
                     if (i == inventoryButtonPanel.GetComponent<InventoryButtonArray>().getButtonMaxSize() - 1)
                     {
                         getrequestbutton = lines[i + 3].Substring(0);
-                        Debug.Log("button[" + i + "]item : " + getrequestbutton);
+                        //Debug.Log("button[" + i + "]item : " + getrequestbutton);
                     }
                     else
                     {
                         getrequestbutton = lines[i + 3].Substring(0, lines[i + 3].IndexOf("["));
-                        Debug.Log("button[" + i + "]item : " + getrequestbutton);
+                        //Debug.Log("button[" + i + "]item : " + getrequestbutton);
                     }
 
                     if (String.Equals(getrequestbutton, "Gun"))
