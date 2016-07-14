@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class InventoryButtonDrag : MonoBehaviour {
-    private Vector3 initPosition;
+    private Vector3 initPosition = new Vector3();
+    private Vector3 initLocalPosition = new Vector3();
     private GameObject inventoryButtonPanel;
     private bool checkDrop;
     private Button button;
@@ -11,6 +12,7 @@ public class InventoryButtonDrag : MonoBehaviour {
     void Start()
     {
         initPosition = this.transform.position;
+        initLocalPosition = this.transform.localPosition;
         inventoryButtonPanel = GameObject.FindGameObjectWithTag("InventoryButtonPanel");
         checkDrop = false;
         button = this.GetComponent<InventoryButton>().button;
@@ -49,7 +51,8 @@ public class InventoryButtonDrag : MonoBehaviour {
             }
         }
 
-        this.transform.position = initPosition; //버튼을 놓으면 다시 원래 위치로 되돌아 감
+        //this.transform.Position = initPosition; //버튼을 놓으면 다시 원래 위치로 되돌아 감
+        this.transform.localPosition = initLocalPosition;
         button.GetComponent<InventoryButton>().setClickOn(true);    //자꾸 클릭이 되어서 클릭 off 시킴
         button.GetComponent<InventoryButton>().onClickInventoryButton();
         inventoryButtonPanel.GetComponent<InventoryButtonArray>().SettingButtonPosition();
