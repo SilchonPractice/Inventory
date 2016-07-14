@@ -33,7 +33,12 @@ public class PlayerButtonController : MonoBehaviour
                 //데이터 세이브
                 Debug.Log("Data save " + playerList[i].name);
                 networkManager.GetComponent<ServerTest>().SaveServer(i);
-                playerList[i].GetComponent<PlayerButton>().setCheckButtonClick(false);
+
+                if (playerList[i] == clickPlayer)
+                    playerList[i].GetComponent<PlayerButton>().setCheckButtonClick(true);
+                else
+                    playerList[i].GetComponent<PlayerButton>().setCheckButtonClick(false);
+
                 resetButton.GetComponent<ResetButton>().OnClickResetButton();
             }
         }
